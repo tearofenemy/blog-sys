@@ -8,11 +8,11 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
-    <form action="{{ url('/login') }}" method="post">
+    <form action="{{ route('login') }}" method="POST">
         @csrf
 
       <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} has-feedback">
-        <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="Email">
+        <input type="email" id="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="Email">
 
         @if ($errors->has('email'))
             <span class="invalid-feedback" style="color: red;" role="alert">
@@ -23,7 +23,7 @@
       </div>
 
       <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} has-feedback">
-        <input type="password" name="password" class="form-control" value="{{ old('password') }}" placeholder="Password">
+        <input type="password" id="password" name="password" class="form-control" value="{{ old('password') }}" placeholder="Password">
 
         @if ($errors->has('password'))
             <span class="invalid-feedback" style="color: red;" role="alert">
