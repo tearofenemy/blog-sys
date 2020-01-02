@@ -6,6 +6,7 @@ use App\Category;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller

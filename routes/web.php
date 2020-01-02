@@ -44,4 +44,9 @@ Route::get('/author/{author}', [
 
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', 'Auth\LoginController@logout');
+
+Route::get('/backend', [
+    'uses' => 'BackendController@index',
+    'as' => 'backend'
+]);
