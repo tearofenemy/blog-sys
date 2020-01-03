@@ -47,6 +47,6 @@ Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/backend', [
-    'uses' => 'BackendController@index',
+    'uses' => 'Backend\HomeController@index',
     'as' => 'backend'
 ]);
