@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::get('/', [
     'uses' => 'BlogController@index',
     'as' => 'home'
@@ -50,3 +49,7 @@ Route::get('/backend', [
     'uses' => 'Backend\HomeController@index',
     'as' => 'backend'
 ]);
+
+Route::name('backend.')->group(function () {
+    Route::resource('/backend/blog', 'Backend\BlogController');
+});

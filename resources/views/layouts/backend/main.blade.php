@@ -18,7 +18,7 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/back/css/skins/_all-skins.min.css">
   <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="/back/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
