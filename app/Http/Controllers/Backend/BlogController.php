@@ -28,10 +28,10 @@ class BlogController extends BackendController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Post $post)
     {
         if (view()->exists('backend.blog.create')) {
-            return view('backend.blog.create');
+            return view('backend.blog.create', compact('post'));
         }
     }
 
@@ -43,7 +43,6 @@ class BlogController extends BackendController
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
