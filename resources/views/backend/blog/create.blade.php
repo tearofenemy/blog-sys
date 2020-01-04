@@ -54,7 +54,7 @@
 
                     <div class="form-group">
                         {!! Form::label('category_id', 'Category') !!}
-                        {!! Form::select('category_id', App\Category::pluck('title', 'id'), ['class' => 'form-control', 'placeholder' => 'Select cagory']) !!}
+                        {!! Form::select('category_id', App\Category::pluck('title', 'id'), ['placeholder' => 'Select category']) !!}
                     </div>
                     <hr>
 
@@ -76,7 +76,8 @@
 @endsection
 
 @section('script')
-    <script lang="js">
+    <script>
         $('ul.pagination').addClass('no-margin pagination-xs');
+        $('select#category_id').addClass('form-control');
     </script>
 @endsection

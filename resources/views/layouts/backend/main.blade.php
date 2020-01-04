@@ -45,7 +45,7 @@
 <!-- AdminLTE App -->
 <script src="/back/js/app.min.js"></script>
 
-@yield('scripts')
+@yield('script')
 
 </body>
 </html>
