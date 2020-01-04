@@ -10,6 +10,8 @@
       </h1>
       <ol class="breadcrumb">
         <li class="active"><i class="fa fa-dashboard"></i> Dashboard</li>
+        <li class="active"><a href="{{ route('backend.blog.index') }}">Blog</a></li>
+        <li>All Posts</li>
       </ol>
     </section>
 
@@ -18,8 +20,18 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="box">
+                <div class="box-header">
+                    <div class="pull-left">
+                        <a href="{{ route('backend.blog.create') }}" class="btn btn-success">Add New</a>
+                    </div>
+                </div>
               <!-- /.box-header -->
-              <div class="box-body ">
+              <div class="box-body">
+                    @if (!$posts->count())
+                        <div class="alert alert-danger">
+                            <strong>No found records</strong>
+                        </div>
+                    @else
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -52,6 +64,7 @@
                                 </td>
                             </tr>
                             @endforeach
+                        @endif
                         </tbody>
                     </table>
               </div>
@@ -74,4 +87,10 @@
     </section>
     <!-- /.content -->
   </div>
+@endsection
+
+@section('script')
+    <script lang="js">
+        $('ul.pagination').addClass('no-margin pagination-xs');
+    </script>
 @endsection

@@ -15,8 +15,8 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li>
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          <a href="{{ route('backend.blog.index') }}">
+            <i class="fa fa-dashboard"></i><span> Dashboard</span>
           </a>
         </li>
         <li class="treeview">

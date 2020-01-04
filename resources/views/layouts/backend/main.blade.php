@@ -44,5 +44,8 @@
 <script src="/back/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/back/js/app.min.js"></script>
+
+@yield('scripts')
+
 </body>
 </html>
