@@ -27,7 +27,7 @@
                                 <td>Title</td>
                                 <td>Author</td>
                                 <td>Category</td>
-                                <td>Date</td>
+                                <td width="160">Date</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,7 +44,12 @@
                                 <td>{{ $post->slug }}</td>
                                 <td>{{ $post->author->name }}</td>
                                 <td>{{ $post->category->title }}</td>
-                                <td>{{ $post->created_at }}</td>
+                                <td>
+                                    <abbr title="{{ $post->dateFormatted(true) }}">
+                                        {{ $post->dateFormatted() }}
+                                    </abbr> |
+                                    {!! $post->publicationLabel()  !!}
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -54,17 +59,11 @@
               <div class="box-footer">
                 <div class="pull-left">
                     <ul class="pagination no-margin">
-                        <li>
-                          <a href="#">&laquo;</a>
-                          <a href="#">1</a>
-                          <a href="#">2</a>
-                          <a href="#">3</a>
-                          <a href="#">&raquo;</a>
-                        </li>
+                       {{ $posts->links() }}
                     </ul>
                 </div>
                 <div class="pull-right">
-                    <small>4 items</small>
+                    <small>{{ $posts->count() }} items</small>
                 </div>
               </div>
             </div>

@@ -84,4 +84,22 @@ class Post extends Model
     {
         return is_null($this->published_at) ? '' : $this->published_at->formatLocalized("%B %d" . ", %Y" . " at " . date('H:i'));
     }
+
+    public function dateFormatted($showTimes = false)
+    {
+        $format = "d/m/Y";
+        if ($showTimes) $format = $format . " H:i";
+        return $this->created_at->format($format);
+    }
+
+    public function publicationLabel()
+    {
+        if (!$this->published_at) {
+            return '<span class="label label-warning">Draft</span>';
+        } else if ($this->published_at && $this->published_at->isFuture()) {
+            return '<span class="label label-info">Shedule</span>';
+        } else {
+            return '<span class="label label-success">Published</span>';
+        }
+    }
 }
