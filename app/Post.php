@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
 
+    protected $fillable = ['title', 'slug', 'excerpt', 'body', 'published_at', 'category_id'];
     protected $dates = ['published_at'];
 
     public function author()
@@ -101,5 +102,10 @@ class Post extends Model
         } else {
             return '<span class="label label-success">Published</span>';
         }
+    }
+
+    public function setPublishedAtAttribute($value)
+    {
+        $this->attributes['published_at'] = $value ?: NULL;
     }
 }
