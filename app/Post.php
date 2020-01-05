@@ -29,10 +29,11 @@ class Post extends Model
 
         if (!is_null($this->img)) {
 
-            $img_path = public_path() . "/img/" . $this->img;
+            $dir = config('cms.img.directory');
+            $img_path = public_path() . "/{$dir}/" . $this->img;
 
             if (file_exists($img_path)) {
-                $img_url = asset('img/' . $this->img);
+                $img_url = asset("{$dir}/" . $this->img);
             }
         }
         return $img_url;
@@ -42,15 +43,15 @@ class Post extends Model
     {
 
         $img_url = "";
-
+        $dir = config('cms.img.directory');
         if (!is_null($this->img)) {
 
             $ext = substr(strchr($this->img, "."), 1);
             $thumbnail = str_replace(".{$ext}", "_thumb.{$ext}", $this->img);
-            $img_path = public_path() . "/img/" . $thumbnail;
+            $img_path = public_path() . "/{$dir}/" . $thumbnail;
 
             if (file_exists($img_path)) {
-                $img_url = asset('img/' . $thumbnail);
+                $img_url = asset("{$dir}/" . $thumbnail);
             }
         }
         return $img_url;
