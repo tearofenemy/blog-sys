@@ -99,5 +99,8 @@
 @section('script')
     <script lang="js">
         $('ul.pagination').addClass('no-margin pagination-xs');
+        setTimeout(function() {
+            $('.alert-info').fadeOut();
+        }, 3000);
     </script>
 @endsection
