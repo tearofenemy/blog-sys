@@ -94,7 +94,6 @@ class BlogController extends BackendController
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -103,7 +102,12 @@ class BlogController extends BackendController
      */
     public function edit($id)
     {
-        //
+
+        $post = Post::findOrFail($id);
+        if (view()->exists('backend.blog.edit')) {
+            return view('backend.blog.edit', compact('post'));
+        }
+
     }
 
     /**
@@ -113,9 +117,12 @@ class BlogController extends BackendController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $data = $this->handleRequest($request);
+        $post->update($data);
+        return redirect('/backend/blog')->with('message', "Your post was successfully updated.");
     }
 
     /**

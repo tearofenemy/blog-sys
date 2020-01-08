@@ -1,17 +1,17 @@
 @extends('layouts.backend.main')
 
-@section('title', "My Blog | Create Post")
+@section('title', "My Blog | Edit Post")
 
 @section('content')
 <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Blog <small>Create New Post</small>
+        Blog <small>Edit Post</small>
       </h1>
       <ol class="breadcrumb">
         <li class="active"><i class="fa fa-dashboard"></i> Dashboard</li>
         <li class="active"><a href="{{ route('backend.blog.index') }}">Blog</a></li>
-        <li>Create Post</li>
+        <li>Edit Post</li>
       </ol>
     </section>
 
@@ -19,8 +19,8 @@
     <section class="content">
         <div class="row">
             {!! Form::model($post, [
-                        'method' => 'POST',
-                        'route' => 'backend.blog.store',
+                        'method' => 'PUT',
+                        'route' => ['backend.blog.update', $post->id],
                         'files' => true,
                         'id' => 'post-form'
                     ]) !!}
