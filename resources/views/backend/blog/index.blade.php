@@ -28,11 +28,7 @@
               <!-- /.box-header -->
               <div class="box-body">
 
-                    @if (session('message'))
-                        <div class="alert alert-info">
-                            {{ session('message') }}
-                        </div>
-                    @endif
+                    @include('backend.blog.message')
 
                     @if (!$posts->count())
                         <div class="alert alert-danger">
@@ -42,7 +38,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <td>Action</td>
+                                <td width="150">Action</td>
                                 <td>Slug</td>
                                 <td>Author</td>
                                 <td>Category</td>
@@ -53,12 +49,14 @@
                             @foreach ($posts as $post)
                                 <tr>
                                 <td>
-                                    <a href="{{ route('backend.blog.edit', $post->id) }}" class="btn btn-xs btn-default">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <a href="{{ route('backend.blog.destroy', $post->id) }}" class="btn btn-xs btn-danger">
-                                        <i class="fa fa-times"></i>
-                                    </a>
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['backend.blog.destroy', $post->id]]) !!}
+                                        <a href="{{ route('backend.blog.edit', $post->id) }}" class="btn btn-default">
+                                            Edit
+                                        </a>
+                                        <button type="submit" class="btn btn-danger">
+                                            Delete
+                                        </button>
+                                    {!! Form::close() !!}
                                 </td>
                                 <td>{{ $post->slug }}</td>
                                 <td>{{ $post->author->name }}</td>
@@ -96,11 +94,5 @@
   </div>
 @endsection
 
-@section('script')
-    <script lang="js">
-        $('ul.pagination').addClass('no-margin pagination-xs');
-        setTimeout(function() {
-            $('.alert-info').fadeOut();
-        }, 3000);
-    </script>
-@endsection
+
+@include('backend.blog.scripts')

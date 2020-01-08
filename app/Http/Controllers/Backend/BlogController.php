@@ -9,6 +9,7 @@ use Intervention\Image\Facades\Image;
 
 class BlogController extends BackendController
 {
+
     protected $limit = 5;
     protected $uploadPath;
 
@@ -107,7 +108,6 @@ class BlogController extends BackendController
         if (view()->exists('backend.blog.edit')) {
             return view('backend.blog.edit', compact('post'));
         }
-
     }
 
     /**
@@ -133,6 +133,15 @@ class BlogController extends BackendController
      */
     public function destroy($id)
     {
-        //
+        Post::findOrFail($id)->delete();
+        return redirect('/backend/blog')->with('trash-msg', ["Your post successufully moved to Trash.", $id]);
+    }
+
+
+    public function restore($id) {
+        $post = Post::withTrashed()->findOrFail($id);
+        $post->restore();
+
+        return redirect('/backend/blog')->with('message', 'Your post was successfully restored from Trash.');
     }
 }

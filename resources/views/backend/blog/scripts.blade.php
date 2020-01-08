@@ -1,5 +1,5 @@
 @section('script')
-    <script lang="js">
+    <script>
     $(function() {
         $('ul.pagination').addClass('no-margin pagination-xs');
         $('select#category_id').addClass('form-control');
@@ -14,6 +14,12 @@
                                     .replace(/&/g, "-and-");
             slug.val(slugVal);
         });
+
+
+        $('#close_session_msg').click(function() {
+            $('.alert-info').fadeOut(300);
+        });
+
 
         //text editor init
         var simplemde_excerpt = new SimpleMDE({ element: document.getElementById("excerpt") });
