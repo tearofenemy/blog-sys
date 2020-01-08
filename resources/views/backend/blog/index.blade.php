@@ -43,7 +43,7 @@
                         <thead>
                             <tr>
                                 <td>Action</td>
-                                <td>Title</td>
+                                <td>Slug</td>
                                 <td>Author</td>
                                 <td>Category</td>
                                 <td width="160">Date</td>
