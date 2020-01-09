@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/css/jasny-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/back/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/back/css/custom.css">
   <link rel="stylesheet" href="/back/plugins/simplemde/simplemde.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->

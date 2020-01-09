@@ -12,7 +12,7 @@
         @foreach ($posts as $post)
             <tr>
             <td>
-                {!! Form::open(['style' => 'display:inline-block;', 'method' => 'PUT', 'route' => ['backend.blog.restore', $post->id]]) !!}
+                {!! Form::open(['method' => 'PUT', 'style' => 'display:inline-block;', 'route' => ['backend.blog.restore', $post->id]]) !!}
                     <button type="submit" class="btn btn-default">
                         Restore
                     </button>

@@ -1,4 +1,4 @@
- <table class="table table-bordered">
+<table class="table table-bordered">
     <thead>
         <tr>
             <td width="150">Action</td>

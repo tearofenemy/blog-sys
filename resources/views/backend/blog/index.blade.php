@@ -25,13 +25,17 @@
                         <a href="{{ route('backend.blog.create') }}" class="btn btn-success">Add New</a>
                     </div>
                     <div class="pull-right" style="padding: 7px 0;">
-                        <a href="?status=all">All</a>|
-                        <a href="?status=trash">Trash</a>
+                        <?php $links = []; ?>
+                        @foreach ($statusList as $key => $value)
+                            @if ($value)
+                                <?php $selected = Request::get('status') == $key ? 'selected-link' : ''; ?>
+                                <?php echo "<a class=\"{$selected}\" href=\"?status={$key}\">". $key ."({$value})</a> | "; ?>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
-              <!-- /.box-header -->
+                <!-- /.box-header -->
               <div class="box-body">
-
                     @include('backend.blog.message')
 
                     @if (!$postsCount)
@@ -50,11 +54,11 @@
               <div class="box-footer">
                 <div class="pull-left">
                     <ul class="pagination no-margin">
-                       {{ $posts->links() }}
+                       {{ $posts->appends(Request::query())->render() }}
                     </ul>
                 </div>
                 <div class="pull-right">
-                    <small>{{ $posts->count() }} items</small>
+                    <small>{{ $postsCount }} items</small>
                 </div>
               </div>
             </div>
