@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use \Illuminate\Auth\Access\AuthorizationException;
 
 class CategoryDestroyRequest extends FormRequest
 {
@@ -14,11 +15,6 @@ class CategoryDestroyRequest extends FormRequest
     public function authorize()
     {
         return !($this->route('category') == config('cms.default_category_id'));
-    }
-
-    public function forbiddenResponse()
-    {
-        return redirect()->back()->with('err-message', 'You cannot delete a default category');
     }
 
     /**

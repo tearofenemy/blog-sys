@@ -6,8 +6,8 @@
         </div>
     </div>
 @elseif(session('err-message'))
-    <div class="alert alert-dangare">
-        {{ session('message') }}
+    <div class="alert alert-danger">
+        {{ session('err-message') }}
         <div class="pull-right">
             <i class="fa fa-close" id="close_session_msg"></i>
         </div>

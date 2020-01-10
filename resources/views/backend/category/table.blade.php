@@ -16,13 +16,13 @@
                             Edit
                         </a>
                         @if ($category->id == config('cms.default_category_id'))
-                            <button onclick="return false;" type="submit" class="btn btn-danger disabled">
+                            <button type="submit" onclick="return false;" class="btn btn-danger disabled">
                                 Delete
                             </button>
                         @else
-                        <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger">
-                            Delete
-                        </button>
+                            <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger">
+                                Delete
+                            </button>
                         @endif
                     {!! Form::close() !!}
                 </td>

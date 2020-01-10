@@ -15,7 +15,7 @@
         });
 
         $('#close_session_msg').click(function() {
-            $('.alert-info').fadeOut(300);
+            $('.alert-danger').fadeOut(300);
         });
     });
 </script>
