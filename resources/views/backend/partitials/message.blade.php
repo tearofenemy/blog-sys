@@ -5,6 +5,13 @@
             <i class="fa fa-close" id="close_session_msg"></i>
         </div>
     </div>
+@elseif(session('err-message'))
+    <div class="alert alert-dangare">
+        {{ session('message') }}
+        <div class="pull-right">
+            <i class="fa fa-close" id="close_session_msg"></i>
+        </div>
+    </div>
 @elseif (session('trash-msg'))
     <?php list($message, $postId) = session('trash-msg'); ?>
     {!! Form::open(['method' => 'PUT', 'route' => ['backend.blog.restore', $postId]]) !!}

@@ -25,7 +25,6 @@
                         <a href="{{ route('backend.blog.create') }}" class="btn btn-success">Add New</a>
                     </div>
                     <div class="pull-right" style="padding: 7px 0;">
-                        <?php $links = []; ?>
                         @foreach ($statusList as $key => $value)
                             @if ($value)
                                 <?php $selected = Request::get('status') == $key ? 'selected-link' : ''; ?>
@@ -36,7 +35,7 @@
                 </div>
                 <!-- /.box-header -->
               <div class="box-body">
-                    @include('backend.blog.message')
+                    @include('backend.partitials.message')
 
                     @if (!$postsCount)
                         <div class="alert alert-danger">
