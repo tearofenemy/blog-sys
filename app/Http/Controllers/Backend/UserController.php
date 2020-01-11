@@ -94,23 +94,22 @@ class UserController extends BackendController
     public function destroy(UserDestroyRequest $request, $id)
     {
         $user = User::findOrFail($id);
-        $deleted_oprtion = $request->deleted_option;
-        $selected_user = $request->selected_user;
+        $deleteOption = $request->deleted_option;
+        $selectedUser = $request->selected_user;
 
-        if($deleted_oprtion == 'delete') {
+        if($deleteOption == "delete") {
             $user->posts()->withTrashed()->forceDelete();
-        } else if($deleted_oprtion == 'attribute') {
-            $user->posts()->update(['author_id' => $selected_user]);
+        } else if($deleteOption == "attribute") {
+            $user->posts()->update(['author_id' => $selectedUser]);
         }
 
         $user->delete();
         return redirect('/backend/user')->with('message', 'User successfully deleted.');
     }
 
-    public function confirm(UserDestroyRequest $request, $id)
+    public function confirm($id)
     {
         $user = User::findOrFail($id);
-
         $users = User::where('id', '!=', $user->id)->pluck('name', 'id');
 
         return view('backend.user.confirm', compact('user', 'users'));

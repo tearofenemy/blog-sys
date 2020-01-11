@@ -10,7 +10,6 @@
                         'method' => 'DELETE',
                         'route' => ['backend.user.destroy', $user->id],
             ])!!}
-
             <div class="col-xs-9">
                 <div class="box">
                     <div class="box-body">
@@ -24,10 +23,10 @@
                             What should be done with content of this user?
                         </p>
                         <p>
-                            <input type="radio" name="detelet_option" value="delete">Delete all content
+                            <input type="radio" name="deleted_option" value="delete">Delete all content
                         </p>
                         <p>
-                            <input type="radio" name="selected_user" value="attribute">Attribute content to:
+                            <input type="radio" name="deleted_option" value="attribute">Attribute content to:
                             {!! Form::select('selected_user', $users, null) !!}
                         </p>
                     </div>
