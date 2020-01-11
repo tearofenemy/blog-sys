@@ -33,6 +33,7 @@
           </ul>
         </li>
         <li><a href="{{ route('backend.category.index') }}"><i class="fa fa-folder"></i> <span>Categories</span></a></li>
+        <li><a href="{{ route('backend.user.index') }}"><i class="fa fa-user"></i><span>Users</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
