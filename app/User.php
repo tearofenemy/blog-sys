@@ -6,10 +6,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use GrahamCampbell\Markdown\Facades\Markdown;
+use Laratrust\Traits\LaratrustUserTrait;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use LaratrustUserTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -53,10 +55,12 @@ class User extends Authenticatable
         return $this->bio ? Markdown::convertToHtmL(e($this->bio)) : NULL;
     }
 
+    /*
     public function setPasswordAttribute($value)
     {
         if (!empty($value)) {
             $this->attributes['password'] = bcrypt($this->attributes['password']);
         }
     }
+     */
 }

@@ -29,12 +29,12 @@
                 @endif
             </div>
 
-            <div class="form-group {{ $errors->has('confirm_password') ? 'has-error' : '' }}">
-                {!! Form::label('confirm_password') !!}
-                {!! Form::password('confirm_password', ['class' => 'form-control', 'placeholder' => 'Confirm Password']) !!}
+            <div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
+                {!! Form::label('password_confirmation') !!}
+                {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Confirm Password']) !!}
 
-                @if ($errors->has('confirm_password'))
-                    <span class="help-block">{{ $errors->first('confirm_password') }}</span>
+                @if ($errors->has('password_confirmation'))
+                    <span class="help-block">{{ $errors->first('password_confirmation') }}</span>
                 @endif
             </div>
         </div>
