@@ -52,4 +52,11 @@ class User extends Authenticatable
     {
         return $this->bio ? Markdown::convertToHtmL(e($this->bio)) : NULL;
     }
+
+    public function setPasswordAttribute($value)
+    {
+        if (!empty($value)) {
+            $this->attributes['password'] = bcrypt($this->attributes['password']);
+        }
+    }
 }
