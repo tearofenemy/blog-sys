@@ -32,8 +32,12 @@
             <li><a href="{{ route('backend.blog.create') }}"><i class="fa fa-circle-o"></i> Add New</a></li>
           </ul>
         </li>
-        <li><a href="{{ route('backend.category.index') }}"><i class="fa fa-folder"></i> <span>Categories</span></a></li>
-        <li><a href="{{ route('backend.user.index') }}"><i class="fa fa-user"></i><span>Users</span></a></li>
+        @role(['admin', 'editor'])
+            <li><a href="{{ route('backend.category.index') }}"><i class="fa fa-folder"></i> <span>Categories</span></a></li>
+        @endrole
+        @role('admin')
+            <li><a href="{{ route('backend.user.index') }}"><i class="fa fa-user"></i><span>Users</span></a></li>
+        @endrole
       </ul>
     </section>
     <!-- /.sidebar -->

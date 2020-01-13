@@ -67,6 +67,6 @@ Route::delete('/backend/blog/force-destroy/{post}', [
 ]);
 
 Route::get('/backend/user/confirm/{user}', [
-    'uses' => 'Backend\UserController@confirm',
+    'uses' => 'Backend\UsersController@confirm',
     'as' => 'backend.user.confirm'
 ]);
