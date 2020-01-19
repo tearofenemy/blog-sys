@@ -70,3 +70,6 @@ Route::get('/backend/user/confirm/{user}', [
     'uses' => 'Backend\UsersController@confirm',
     'as' => 'backend.user.confirm'
 ]);
+
+Route::get('/edit-account', 'Backend\HomeController@edit')->name('edit-account');
+Route::put('/edit-account', 'Backend\HomeController@update');
