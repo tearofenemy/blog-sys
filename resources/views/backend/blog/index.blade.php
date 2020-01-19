@@ -70,5 +70,4 @@
   </div>
 @endsection
 
-
 @include('backend.blog.scripts')

@@ -37,21 +37,25 @@ class BlogController extends BackendController
         } elseif ($status == 'draft') {
             $posts = Post::draft()->with('category', 'author')->latest()->paginate($this->limit);
             $postsCount = Post::draft()->count();
+        } elseif ($status == 'own') {
+            $posts = $request->user()->posts()->with('category', 'author')->latest()->paginate($this->limit);
+            $postsCount = $request->user()->posts()->count();
         } else {
             $posts = Post::with('category', 'author')->latest()->paginate($this->limit);
             $postsCount = Post::count();
         }
 
-        $statusList = $this->statusList();
+        $statusList = $this->statusList($request);
 
         if (view()->exists('backend.blog.index')) {
             return view('backend.blog.index', compact('posts', 'postsCount', 'onlyTrashed', 'statusList'));
         }
     }
 
-    private function statusList()
+    private function statusList(Request $request)
     {
         return [
+            'own' => $request->user()->posts()->count(),
             'all' => Post::count(),
             'published' => Post::published()->count(),
             'sheduled' => Post::sheduled()->count(),

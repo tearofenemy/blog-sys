@@ -31,7 +31,7 @@ class PostSeeder extends Seeder
             //$date = date("Y-m-d H:i:s", strtotime("2019-12-23 23:10 + {$i} days"));
 
             $posts[] = [
-                'author_id' => rand(1, 3),
+                'author_id' => rand(1, 4),
                 'category_id' => rand(1, 5),
                 'title' => $faker->title(),
                 'slug' => $faker->slug(),

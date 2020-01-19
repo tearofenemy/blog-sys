@@ -10,8 +10,8 @@
       </h1>
       <ol class="breadcrumb">
         <li class="active"><i class="fa fa-dashboard"></i> Dashboard</li>
-        <li class="active"><a href="{{ route('backend.category.index') }}">Category</a></li>
-        <li>Edit Category</li>
+        <li class="active"><a href="{{ route('backend.user.index') }}">User</a></li>
+        <li>Edit User</li>
       </ol>
     </section>
 
@@ -23,7 +23,7 @@
                         'route' => ['backend.user.update', $user->id],
                         'id' => 'user-form'
                     ]) !!}
-                @include('backend.category.form')
+                @include('backend.user.form')
             {!! Form::close() !!}
         </div>
       <!-- ./row -->

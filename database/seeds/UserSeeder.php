@@ -21,23 +21,30 @@ class UserSeeder extends Seeder
             [
                 'name' => 'John Doe',
                 'slug' => 'john-doe',
-                'bio' => $faker->text(250, 300),
-                'email' => $faker->email,
-                'password' => bcrypt($faker->password(6, 15))
+                'bio' => $faker->text(6, 12),
+                'email' => 'john@de.com',
+                'password' => bcrypt('john')
             ],
             [
                 'name' => "Kate Morison",
                 'slug' => 'kate-morison',
-                'bio' => $faker->text(250, 300),
-                'email' => $faker->email,
-                'password' => bcrypt($faker->password(6, 15))
+                'bio' => $faker->text(6, 12),
+                'email' => 'kate@mr.com',
+                'password' => bcrypt('kate')
             ],
             [
                 'name' => 'Mike Loris',
                 'slug' => 'mike-loris',
-                'bio' => $faker->text(250, 300),
-                'email' => $faker->email,
-                'password' => bcrypt($faker->password(6, 15))
+                'bio' => $faker->text(6, 12),
+                'email' => 'mike@lr.com',
+                'password' => bcrypt('mike')
+            ],
+            [
+                'name' => 'Admin User',
+                'slug' => 'admin-user',
+                'bio' => $faker->text(6, 12),
+                'email' => 'admin@gmail.com',
+                'password' => bcrypt('admin')
             ]
         ]);
     }

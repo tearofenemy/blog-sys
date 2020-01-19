@@ -29,7 +29,7 @@
                 <img src="/back/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  {{Auth::user()->name}} - Web Developer
+                  {{Auth::user()->name}} - {{ Auth::user()->roles->first()->display_name }}
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>

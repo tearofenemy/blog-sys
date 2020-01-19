@@ -9,5 +9,5 @@ return [
         ]
     ],
     'default_category_id' => 5,
-    'default_user_id' => 3
+    'default_user_id' => 4
 ];

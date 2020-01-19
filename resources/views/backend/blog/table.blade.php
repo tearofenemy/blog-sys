@@ -13,9 +13,15 @@
             <tr>
             <td>
                 {!! Form::open(['method' => 'DELETE', 'route' => ['backend.blog.destroy', $post->id]]) !!}
+                @if (check_user_permission(request(), "Blog@edit", $post->id))
                     <a href="{{ route('backend.blog.edit', $post->id) }}" class="btn btn-default">
                         Edit
                     </a>
+                @else
+                    <a href="#" class="btn btn-default disabled">
+                        Edit
+                    </a>
+                @endif
                     <button type="submit" class="btn btn-danger">
                         Delete
                     </button>

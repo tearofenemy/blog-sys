@@ -32,12 +32,12 @@
             <li><a href="{{ route('backend.blog.create') }}"><i class="fa fa-circle-o"></i> Add New</a></li>
           </ul>
         </li>
-        @role(['admin', 'editor'])
+        @if (check_user_permission(request(), "Category@index"))
             <li><a href="{{ route('backend.category.index') }}"><i class="fa fa-folder"></i> <span>Categories</span></a></li>
-        @endrole
-        @role('admin')
+        @endif
+        @if (check_user_permission(request(), "User@index"))
             <li><a href="{{ route('backend.user.index') }}"><i class="fa fa-user"></i><span>Users</span></a></li>
-        @endrole
+        @endif
       </ul>
     </section>
     <!-- /.sidebar -->

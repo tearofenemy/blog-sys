@@ -45,7 +45,8 @@ class UserController extends BackendController
     {
         $data = $request->all();
         $data['password'] = bcrypt($data['password']);
-        User::create($data);
+        $user = User::create($data);
+        $user->attachRole($request->role);
         return redirect('/backend/user')->with('message', 'User successfully created.');
     }
 
@@ -83,7 +84,12 @@ class UserController extends BackendController
      */
     public function update(UserUpdateRequest $request, $id)
     {
-        User::findOrFail($id)->update($request->all());
+        $user = User::findOrFail($id);
+        $user->update($request->all());
+
+        $user->detachRoles();
+        $user->attachRole($request->role);
+
         return redirect('/backend/user')->with('message', 'User successfully updated.');
     }
 
