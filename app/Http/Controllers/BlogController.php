@@ -6,15 +6,15 @@ use App\Category;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\Auth;
+//use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
 {
 
     public function index()
     {
-        $posts = Post::with('author')->latest()->published()->simplePaginate(3);
+        $posts = Post::with('author')->latest()->published()->search(request('query'))->simplePaginate(3);
 
         if (view()->exists('blog.index')) {
             return view('blog.index', compact('posts'));

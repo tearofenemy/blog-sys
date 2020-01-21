@@ -121,4 +121,20 @@ class Post extends Model
     {
         $this->attributes['published_at'] = $value ?: NULL;
     }
+
+    public function scopeSearch($query, $search)
+    {
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->whereHas('author', function ($qr) use ($search) {
+                    $qr->where('name', 'LIKE', "%{$search}%");
+                });
+                $q->orWhereHas('category', function ($qr) use ($search) {
+                    $qr->where('title', 'LIKE', "%{$search}%");
+                });
+                $q->where('title', 'LIKE', "%{$search}%");
+                $q->orWhere('excerpt', 'LIKE', "%{$search}%");
+            });
+        }
+    }
 }

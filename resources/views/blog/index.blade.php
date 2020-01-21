@@ -4,25 +4,12 @@
    <div class="container">
     <div class="row">
         <div class="col-md-8">
-
             @if (!$posts->count())
                 <div class="alert alert-warning">
-                    This category dont have any posts
+                    Nothing have
                 </div>
             @else
-
-                @if (isset($categoryName))
-                    <div class="alert alert-info">
-                        Category: <strong>{{ $categoryName }}</strong>
-                    </div>
-                @endif
-
-                @if (isset($authorName))
-                    <div class="alert alert-info">
-                        Author: <strong>{{ $authorName }}</strong>
-                    </div>
-                @endif
-
+                @include('blog.alert')
                 @foreach ($posts as $post)
                     <article class="post-item">
                         @if($post->img_url)
@@ -58,7 +45,7 @@
             @endif
 
             <nav>
-                {{ $posts->links() }}
+                {{ $posts->appends(request()->only(['query']))->links() }}
             </nav>
         </div>
         @include('layouts.sidebar')
