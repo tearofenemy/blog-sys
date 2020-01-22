@@ -43,7 +43,6 @@
                 @endforeach
 
             @endif
-
             <nav>
                 {{ $posts->appends(request()->only(['query']))->links() }}
             </nav>
