@@ -74,14 +74,12 @@
             </div>
             <div class="widget-body">
                 <ul class="categories">
-                   <li><a href="#">February 2019</a></li>
-                   <li><a href="#">February 2019</a></li>
-                   <li><a href="#">February 2019</a></li>
-                   <li><a href="#">February 2019</a></li>
-                   <li><a href="#">February 2019</a></li>
-                   <li><a href="#">February 2019</a></li>
-                   <li><a href="#">February 2019</a></li>
-                   <li><a href="#">February 2019</a></li>
+                    @foreach ($archives as $archive)
+                        <li>
+                            <a href="{{ route('home', ['month' => $archive->month, 'year' => $archive->year]) }}">{{ $archive->month .' '. $archive->year}}</a>
+                            <span class="badge pull-right">{{ $archive->total_count }}</span>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>

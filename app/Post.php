@@ -139,17 +139,34 @@ class Post extends Model
 
     public function scopeSearch($query, $search)
     {
-        if ($search) {
-            $query->where(function ($q) use ($search) {
-                $q->whereHas('author', function ($qr) use ($search) {
-                    $qr->where('name', 'LIKE', "%{$search}%");
+        if (isset($search['month']) && $month = $search['month']) {
+            $query->whereMonth('published_at', Carbon::parse($month)->month);
+        }
+
+        if (isset($search['year']) && $year = $search['year']) {
+            $query->whereYear('published_at', $year);
+        }
+
+        if (isset($search['query']) && $filter = $search['query']) {
+            $query->where(function ($q) use ($filter) {
+                $q->whereHas('author', function ($qr) use ($filter) {
+                    $qr->where('name', 'LIKE', "%{$filter}%");
                 });
-                $q->orWhereHas('category', function ($qr) use ($search) {
-                    $qr->where('title', 'LIKE', "%{$search}%");
+                $q->orWhereHas('category', function ($qr) use ($filter) {
+                    $qr->where('title', 'LIKE', "%{$filter}%");
                 });
-                $q->where('title', 'LIKE', "%{$search}%");
-                $q->orWhere('excerpt', 'LIKE', "%{$search}%");
+                $q->where('title', 'LIKE', "%{$filter}%");
+                $q->orWhere('excerpt', 'LIKE', "%{$filter}%");
             });
         }
+    }
+
+    public static function archives()
+    {
+        return static::selectRaw('count(id) as total_count, year(published_at) year, monthname(published_at) month')
+            ->published()
+            ->groupBy('year', 'month')
+            ->orderByRaw('min(published_at) desc')
+            ->get();
     }
 }

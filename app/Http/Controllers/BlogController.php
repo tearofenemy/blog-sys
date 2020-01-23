@@ -13,7 +13,7 @@ class BlogController extends Controller
 
     public function index()
     {
-        $posts = Post::with('author', 'tags', 'category')->latest()->published()->search(request('query'))->simplePaginate(3);
+        $posts = Post::with('author', 'tags', 'category')->latest()->published()->search(request()->only(['query', 'month', 'year']))->simplePaginate(3);
 
         if (view()->exists('blog.index')) {
             return view('blog.index', compact('posts'));

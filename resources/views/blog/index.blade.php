@@ -45,7 +45,7 @@
 
             @endif
             <nav>
-                {{ $posts->appends(request()->only(['query']))->links() }}
+                {{ $posts->appends(request()->only(['query', 'month', 'year']))->links() }}
             </nav>
         </div>
         @include('layouts.sidebar')
