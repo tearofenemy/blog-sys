@@ -13,7 +13,7 @@ class BlogController extends Controller
 
     public function index()
     {
-        $posts = Post::with('author', 'tags', 'category')->latest()->published()->search(request()->only(['query', 'month', 'year']))->simplePaginate(3);
+        $posts = Post::with('author', 'tags', 'category', 'comments')->latest()->published()->search(request()->only(['query', 'month', 'year']))->simplePaginate(3);
 
         if (view()->exists('blog.index')) {
             return view('blog.index', compact('posts'));
@@ -56,7 +56,7 @@ class BlogController extends Controller
 
     public function show(Post $post)
     {
-        $post->increment('view_count');
+        //$post->increment('view_count');
         if (view()->exists('blog.show')) {
             return view('blog.show', compact('post'));
         }

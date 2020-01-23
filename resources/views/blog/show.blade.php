@@ -20,7 +20,7 @@
                                         <li><i class="fa fa-user"></i><a href="{{ route('author', $post->author->slug) }}"> {{ $post->author->name }}</a></li>
                                         <li><i class="fa fa-clock-o"></i><time> {{ $post->date }}</time></li>
                                         <li><i class="fa fa-folder"></i><a href="{{ route('category', $post->category) }}"> {{ $post->category->title }}</a></li>
-                                        <li><i class="fa fa-comments"></i><a href="#">4 Comments</a></li>
+                                        <li><i class="fa fa-comments"></i><a href="#">{{ $post->comments->count() }} Comments</a></li>
                                         <li><i class="fa fa-eye"></i> {{ $post->view_count }}</li>
                                     </ul>
                                 </div>
@@ -52,6 +52,7 @@
                         </div>
                     </article>
                 @endif
+                @include('blog.comments')
                 <!-- comments here -->
             </div>
             @include('layouts.sidebar')
