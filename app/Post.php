@@ -71,7 +71,7 @@ class Post extends Model
 
     public function getDateAttribute($value)
     {
-        return is_null($this->published_at) ? '' : $this->published_at->formatLocalized("%B %d" . ", %Y" . " at " . date('H:i'));
+        return is_null($this->published_at) ? '' : $this->published_at->formatLocalized("%B %d" . ", %Y");
     }
 
     public function getBodyHtmlAttribute($value)
@@ -101,7 +101,17 @@ class Post extends Model
 
     public function getDateForPopularAttribute($value)
     {
-        return is_null($this->published_at) ? '' : $this->published_at->formatLocalized("%B %d" . ", %Y" . " at " . date('H:i'));
+        return is_null($this->published_at) ? '' : $this->published_at->formatLocalized("%B %d" . ", %Y");
+    }
+
+    public function getTagsHtmlAttribute($value)
+    {
+        $anchors = [];
+
+        foreach ($this->tags as $tag) {
+            $anchors[] = '<a href="' . route('tag', $tag->slug) . '">' . $tag->title . '</a>';
+        }
+        return implode(", ", $anchors);
     }
 
     public function dateFormatted($showTimes = false)

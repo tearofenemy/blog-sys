@@ -10,6 +10,12 @@
     </div>
 @endif
 
+@if (isset($tagName))
+    <div class="alert alert-info">
+        Tag: <strong>{{ $tagName }}</strong>
+    </div>
+@endif
+
 @if ($search = request('query'))
     <div class="alert alert-info">
         Search Result: <strong>{{ $search }}</strong>

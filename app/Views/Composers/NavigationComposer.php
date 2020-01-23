@@ -5,6 +5,7 @@ namespace App\Views\Composers;
 use Illuminate\View\View;
 use App\Category;
 use App\Post;
+use App\Tag;
 
 class NavigationComposer
 {
@@ -12,6 +13,7 @@ class NavigationComposer
     public function compose(View $view)
     {
         $this->composeCategories($view);
+        $this->composeTags($view);
         $this->composePopularPosts($view);
     }
 
@@ -28,5 +30,12 @@ class NavigationComposer
     {
         $popularPosts = Post::with('author')->popular()->published()->take(3)->get();
         $view->with('popularPosts', $popularPosts);
+    }
+
+    private function composeTags(View $view)
+    {
+        $tags = Tag::has('posts')->get();
+
+        $view->with('tags', $tags);
     }
 }

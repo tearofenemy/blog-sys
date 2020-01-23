@@ -5,16 +5,15 @@ namespace App\Http\Controllers;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Tag;
 use App\User;
-//use Illuminate\Support\Facades\Auth;
-//use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
 {
 
     public function index()
     {
-        $posts = Post::with('author')->latest()->published()->search(request('query'))->simplePaginate(3);
+        $posts = Post::with('author', 'tags', 'category')->latest()->published()->search(request('query'))->simplePaginate(3);
 
         if (view()->exists('blog.index')) {
             return view('blog.index', compact('posts'));
@@ -33,11 +32,22 @@ class BlogController extends Controller
         }
     }
 
+    public function tag(Tag $tag)
+    {
+        $tagName = $tag->title;
+
+        $posts = $tag->posts()->published()->latest()->with('author', 'category')->simplePaginate(3);
+
+        if (view()->exists('blog.index')) {
+            return view('blog.index', compact('tagName', 'posts'));
+        }
+    }
+
     public function author(User $author)
     {
         $authorName = $author->name;
 
-        $posts = $author->posts()->published()->latest()->with('author')->simplePaginate(3);
+        $posts = $author->posts()->published()->latest()->with('author', 'tags', 'category')->simplePaginate(3);
 
         if (view()->exists('blog.index')) {
             return view('blog.index', compact('posts', 'authorName'));

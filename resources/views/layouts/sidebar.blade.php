@@ -62,14 +62,26 @@
             </div>
             <div class="widget-body">
                 <ul class="tags">
-                    <li><a href="#">PHP</a></li>
-                    <li><a href="#">Codeigniter</a></li>
-                    <li><a href="#">Yii</a></li>
-                    <li><a href="#">Laravel</a></li>
-                    <li><a href="#">Ruby on Rails</a></li>
-                    <li><a href="#">jQuery</a></li>
-                    <li><a href="#">Vue Js</a></li>
-                    <li><a href="#">React Js</a></li>
+                    @foreach ($tags as $tag)
+                        <li><a href="{{ route('tag', $tag->slug) }}">{{ $tag->title }}</a></li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+        <div class="widget">
+            <div class="widget-heading">
+                <h4>Archive</h4>
+            </div>
+            <div class="widget-body">
+                <ul class="categories">
+                   <li><a href="#">February 2019</a></li>
+                   <li><a href="#">February 2019</a></li>
+                   <li><a href="#">February 2019</a></li>
+                   <li><a href="#">February 2019</a></li>
+                   <li><a href="#">February 2019</a></li>
+                   <li><a href="#">February 2019</a></li>
+                   <li><a href="#">February 2019</a></li>
+                   <li><a href="#">February 2019</a></li>
                 </ul>
             </div>
         </div>
