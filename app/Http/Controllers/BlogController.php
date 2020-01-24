@@ -56,9 +56,9 @@ class BlogController extends Controller
 
     public function show(Post $post)
     {
-        //$post->increment('view_count');
+        $comments = $post->comments()->simplePaginate(3);
         if (view()->exists('blog.show')) {
-            return view('blog.show', compact('post'));
+            return view('blog.show', compact('post', 'comments'));
         }
     }
 }
