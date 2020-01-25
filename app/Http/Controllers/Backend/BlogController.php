@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use Intervention\Image\Facades\Image;
@@ -86,7 +87,8 @@ class BlogController extends BackendController
     {
         $data = $this->handleRequest($request);
 
-        $request->user()->posts()->create($data);
+        $newPost = $request->user()->posts()->create($data);
+        $newPost->createTags($data["post_tag"]);
         return redirect('/backend/blog')->with('message', 'Your post was successfully created.');
     }
 
@@ -164,6 +166,7 @@ class BlogController extends BackendController
         $post = Post::findOrFail($id);
         $data = $this->handleRequest($request);
         $post->update($data);
+        $post->createTags($data['post_tags']);
         return redirect('/backend/blog')->with('message', "Your post was successfully updated.");
     }
 

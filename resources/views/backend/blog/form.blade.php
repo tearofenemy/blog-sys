@@ -92,6 +92,17 @@
     </div>
     <!-- end category widget -->
 
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Tags</h3>
+        </div>
+        <div class="box-body">
+            <div class="form-group">
+                {!! Form::text('post_tags', null, ['class' => 'form-control', 'placeholder' => 'tag 1, tag 2,...']) !!}
+            </div>
+        </div>
+    </div>
+
     <!-- img widget -->
     <div class="box">
         <div class="box-header with-border">

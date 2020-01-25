@@ -18,11 +18,11 @@
   <link rel="stylesheet" href="/back/css/AdminLTE.min.css">
   <link rel="stylesheet" href="/back/css/custom.css">
   <link rel="stylesheet" href="/back/plugins/simplemde/simplemde.min.css">
+  <link rel="stylesheet" href="/back/plugins/tag-editor/jquery.tag-editor.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/back/css/skins/_all-skins.min.css">
   <!-- bootstrap wysihtml5 - text editor -->
-
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -31,7 +31,6 @@
     @include('layouts.backend.navbar')
 
     @include('layouts.backend.sidebar')
-
 
     @yield('content')
 
@@ -50,6 +49,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/js/jasny-bootstrap.min.js"></script>
+<script src="/back/plugins/tag-editor/jquery.caret.min.js"></script>
+<script src="/back/plugins/tag-editor/jquery.tag-editor.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/back/js/app.min.js"></script>
 

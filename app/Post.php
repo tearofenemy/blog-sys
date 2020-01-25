@@ -174,4 +174,33 @@ class Post extends Model
             ->orderByRaw('min(published_at) desc')
             ->get();
     }
+
+    public function getTagsListAttribute()
+    {
+        return $this->tags->pluck('name');
+    }
+
+    public function createTags($tagString)
+    {
+
+        $tags = explode(',', $tagString);
+        $tagIds = [];
+
+        foreach ($tags as $tag) {
+
+            $newTag = Tag::firstOrCreate(
+                ['title' => ucwords(trim($tag))],
+                ['slug' => str_slug($tag)]
+            );
+            /*$newTag->title = ucwords(trim($tag));
+            $newTag->slug = str_slug($tag);
+            $newTag->save();
+            */
+            $newTag->save();
+            $tagIds[] = $newTag->id;
+        }
+
+        $this->tags()->detach();
+        $this->tags()->attach($tagIds);
+    }
 }
