@@ -16,16 +16,6 @@ Route::get('/', [
     'as' => 'home'
 ]);
 
-Route::get('/about', [
-    'uses' => 'BlogController@about',
-    'as' => 'about'
-]);
-
-Route::get('/contact', [
-    'uses' => 'BlogController@contact',
-    'as' => 'contact'
-]);
-
 Route::get('/post/{post}', [
     'uses' => 'BlogController@show',
     'as' => 'show'
