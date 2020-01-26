@@ -13,28 +13,35 @@ class CategorySeeder extends Seeder
     public function run()
     {
 
-        DB::table('categories')->insert([
-            [
-                'title' => 'Web Development',
-                'slug' => 'web-development'
-            ],
-            [
-                'title' => 'Web Design',
-                'slug' => 'web-design'
-            ],
-            [
-                'title' => 'General',
-                'slug' => 'general'
-            ],
-            [
-                'title' => 'DIY',
-                'slug' => 'diy'
-            ],
-            [
-                'title' => 'Facebook Development',
-                'slug' => 'facebook-development'
-            ],
-        ]);
+        if (env('APP_ENV') === 'local') {
+            DB::table('categories')->insert([
+                [
+                    'title' => 'Web Development',
+                    'slug' => 'web-development'
+                ],
+                [
+                    'title' => 'Web Design',
+                    'slug' => 'web-design'
+                ],
+                [
+                    'title' => 'General',
+                    'slug' => 'general'
+                ],
+                [
+                    'title' => 'DIY',
+                    'slug' => 'diy'
+                ],
+                [
+                    'title' => 'Facebook Development',
+                    'slug' => 'facebook-development'
+                ],
+            ]);
+        } else {
+            DB::table('categories')->insert([
+                'title' => 'Uncategorize',
+                'slug' => 'uncategorize'
+            ]);
+        }
 
         /*for ($post_id = 0; $post_id <= 150; $post_id++) {
             $category_id = rand(1, 5);

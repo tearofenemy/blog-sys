@@ -145,14 +145,22 @@ class Post extends Model
     public function scopeSearch($query, $search)
     {
         if (isset($search['month']) && $month = $search['month']) {
-            $query->whereMonth('published_at', Carbon::parse($month)->month);
+            if (env("DB_CONNECTION") === 'pgsql') {
+                $query->whereRaw('extract(month from published_at) = ?', [$month]);
+            } else {
+                $query->whereRaw('month(published_at) = ?', [$month]);
+            }
         }
 
         if (isset($search['year']) && $year = $search['year']) {
-            $query->whereYear('published_at', $year);
+            if (env("DB_CONNECTION") === 'pgsql') {
+                $query->whereRaw('extract(year from published_at) = ?', [$year]);
+            } else {
+                $query->whereRaw('year(published_at) = ?', [$year]);
+            }
         }
 
-        if (isset($search['query']) && $filter = $search['query']) {
+        if (isset($search['query']) && $filter = strtolower($search['query'])) {
             $query->where(function ($q) use ($filter) {
                 $q->whereHas('author', function ($qr) use ($filter) {
                     $qr->where('name', 'LIKE', "%{$filter}%");
@@ -160,19 +168,27 @@ class Post extends Model
                 $q->orWhereHas('category', function ($qr) use ($filter) {
                     $qr->where('title', 'LIKE', "%{$filter}%");
                 });
-                $q->where('title', 'LIKE', "%{$filter}%");
-                $q->orWhere('excerpt', 'LIKE', "%{$filter}%");
+                $q->where('title', 'LIKE ?', ["%{$filter}%"]);
+                $q->orWhere('excerpt', 'LIKE ?', ["%{$filter}%"]);
             });
         }
     }
 
     public static function archives()
     {
-        return static::selectRaw('count(id) as total_count, year(published_at) year, monthname(published_at) month')
-            ->published()
-            ->groupBy('year', 'month')
-            ->orderByRaw('min(published_at) desc')
-            ->get();
+        if (env("DB_CONNECTION") === 'pgsql') {
+            return static::selectRaw('count(id) as total_count, extract(year from published_at) as year, extract(month from published_at) as month')
+                ->published()
+                ->groupBy('year', 'month')
+                ->orderByRaw('min(published_at) desc')
+                ->get();
+        } else {
+            return static::selectRaw('count(id) as total_count, year(published_at) year, month(published_at) month')
+                ->published()
+                ->groupBy('year', 'month')
+                ->orderByRaw('min(published_at) desc')
+                ->get();
+        }
     }
 
     public function getTagsListAttribute()
@@ -196,7 +212,7 @@ class Post extends Model
             $newTag->slug = str_slug($tag);
             $newTag->save();
             */
-            $newTag->save();
+            //$newTag->save();
             $tagIds[] = $newTag->id;
         }
 

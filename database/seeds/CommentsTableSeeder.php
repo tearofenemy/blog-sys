@@ -14,7 +14,6 @@ class CommentsTableSeeder extends Seeder
      */
     public function run()
     {
-
         $faker = Factory::create();
 
         $comments = [];
@@ -36,7 +35,7 @@ class CommentsTableSeeder extends Seeder
                 ];
             }
         }
-        Comment::truncate();
+        //Comment::delete();
         Comment::insert($comments);
     }
 }

@@ -33,20 +33,22 @@ class RoleTableSedeer extends Seeder
         $author->save();
 
         //Attach role for users
-        $johnBlade = User::find(1);
-        $johnBlade->detachRole($editor);
-        $johnBlade->attachRole($editor);
-
-        $mikeLoris = User::find(3);
-        $mikeLoris->detachRole($editor);
-        $mikeLoris->attachRole($editor);
-
-        $kateWaste = User::find(2);
-        $kateWaste->detachRole($author);
-        $kateWaste->attachRole($author);
-
-        $adm = User::find(4);
+        $adm = User::first();
         $adm->detachRole($admin);
         $adm->attachRole($admin);
+
+        if (env('APP_ENV') === 'local') {
+            $johnBlade = User::find(1);
+            $johnBlade->detachRole($editor);
+            $johnBlade->attachRole($editor);
+
+            $mikeLoris = User::find(3);
+            $mikeLoris->detachRole($editor);
+            $mikeLoris->attachRole($editor);
+
+            $kateWaste = User::find(2);
+            $kateWaste->detachRole($author);
+            $kateWaste->attachRole($author);
+        }
     }
 }

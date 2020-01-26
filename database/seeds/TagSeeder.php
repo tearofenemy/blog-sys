@@ -14,7 +14,7 @@ class TagSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tags')->truncate(); // reset table
+        DB::table('tags')->delete(); // reset table
 
         $php = new Tag();
         $php->title = 'PHP';

@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 
-
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -12,8 +11,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(PostSeeder::class);
-        $this->call(UserSeeder::class);
-        $this->call(CategorySeeder::class);
+
+        if (env('APP_ENV') === 'local') {
+            $this->call(UserSeeder::class);
+            $this->call(CategorySeeder::class);
+            $this->call(PostSeeder::class);
+            $this->call(RoleTableSedeer::class);
+            $this->call(PermissionTableSeeder::class);
+            $this->call(CommentsTableSeeder::class);
+            $this->call(TagSeeder::class);
+        } else {
+            $this->call(UserSeeder::class);
+            $this->call(CategorySeeder::class);
+            $this->call(RoleTableSedeer::class);
+            $this->call(PermissionTableSeeder::class);
+        }
     }
 }

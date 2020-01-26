@@ -12,40 +12,44 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
+        DB::table('users')->delete();
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        DB::table('users')->truncate();
 
-        DB::table('users')->insert([
-            [
-                'name' => 'John Doe',
-                'slug' => 'john-doe',
-                'bio' => $faker->text(6, 12),
-                'email' => 'john@de.com',
-                'password' => bcrypt('john')
-            ],
-            [
-                'name' => "Kate Morison",
-                'slug' => 'kate-morison',
-                'bio' => $faker->text(6, 12),
-                'email' => 'kate@mr.com',
-                'password' => bcrypt('kate')
-            ],
-            [
-                'name' => 'Mike Loris',
-                'slug' => 'mike-loris',
-                'bio' => $faker->text(6, 12),
-                'email' => 'mike@lr.com',
-                'password' => bcrypt('mike')
-            ],
-            [
-                'name' => 'Admin User',
-                'slug' => 'admin-user',
-                'bio' => $faker->text(6, 12),
-                'email' => 'admin@gmail.com',
-                'password' => bcrypt('admin')
-            ]
-        ]);
+        if (env('APP_ENV') === 'local') {
+            $faker = Faker\Factory::create();
+            DB::table('users')->insert([
+                [
+                    'name' => 'John Doe',
+                    'slug' => 'john-doe',
+                    'email' => 'john@de.com',
+                    'password' => bcrypt('john')
+                ],
+                [
+                    'name' => "Kate Morison",
+                    'slug' => 'kate-morison',
+                    'email' => 'kate@mr.com',
+                    'password' => bcrypt('kate')
+                ],
+                [
+                    'name' => 'Mike Loris',
+                    'slug' => 'mike-loris',
+                    'email' => 'mike@lr.com',
+                    'password' => bcrypt('mike')
+                ],
+                [
+                    'name' => 'Admin User',
+                    'slug' => 'admin-user',
+                    'email' => 'admin@gmail.com',
+                    'password' => bcrypt('admin')
+                ]
+            ]);
+        } else {
+            DB::table('users')->insert([
+                'name' => 'Administrator',
+                'slug' => 'administrator',
+                'email' => 'admin@prod.com',
+                'password' => bcrypt('administrator')
+            ]);
+        }
     }
 }

@@ -14,7 +14,7 @@ class PostSeeder extends Seeder
     public function run()
     {
         //reset posts table
-        DB::table('posts')->truncate();
+        DB::table('posts')->delete();
 
         $posts = [];
 
